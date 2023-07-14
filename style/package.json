@@ -1,0 +1,15 @@
+{
+  "name": "@goose/style",
+  "version": "1.0.0",
+  "description": "@goose/style is a styling library for ReactJS and NextJS. This library provides themes and styled components to easily manage the design and styling of web applications.",
+  "main": "libs/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC"
+}
