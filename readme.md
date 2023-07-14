@@ -20,6 +20,8 @@ Typescript를 패키지에 적용하려면, 아래와 같이 개발 의존성으
 
 package.json 파일은 패키지의 정보와 의존성을 정의해요. 아래의 예시를 참조하세요!
 
+`"build": "tsc"`는 Typescript를 사용하는 경우에만 package.json에 추가되는 옵션이에요! :)
+
 ```json
 {
   "name": "module-name",
@@ -29,7 +31,7 @@ package.json 파일은 패키지의 정보와 의존성을 정의해요. 아래�
   "files": ["lib"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc" // Typescript를 사용하는 경우 추가!
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
@@ -62,8 +64,6 @@ Typescript 프로젝트에서 tsconfig.json 파일을 통해 컴파일러 옵션
 ```
 
 # 3. 코드 작성
-
----
 
 본인의 아이디어를 코드로 구현하는 단계에요! :)
 "라이브러리"나 "모듈"을 만든다고 너무 겁을 먹을 필요는 없어요!
