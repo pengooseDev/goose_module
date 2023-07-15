@@ -1,11 +1,12 @@
 {
   "name": "@pengoose/theme",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "@goose/theme is a theme library for styled-components and emotion. This library provides themes to easily manage the design and styling of web applications.",
   "main": "libs/index.js",
   "files": [
     "lib"
   ],
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
