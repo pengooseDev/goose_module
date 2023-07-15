@@ -1,11 +1,11 @@
-# @goose/theme
+# @pengoose/theme
 
-`@goose/theme` is a module that provides a theme (color palette) that can be used in React and Next.js projects. This module can be used in conjunction with CSS-in-JS libraries like `styled-components` and `emotion`.
+`@pengoose/theme` is a module that provides a theme (color palette) that can be used in React and Next.js projects. This module can be used in conjunction with CSS-in-JS libraries like `styled-components` and `emotion`.
 
 # Installation
 
 ```bash
-npm install @goose/theme
+npm install @pengoose/theme
 ```
 
 # darkTheme
@@ -75,7 +75,7 @@ npm install @goose/theme
 ```tsx
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from '@goose/theme';
+import { lightTheme, darkTheme } from '@pengoose/theme';
 import { Components } from './yourComponents';
 
 function App() {
