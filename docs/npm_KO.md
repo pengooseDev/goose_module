@@ -42,9 +42,26 @@ package.json 파일은 패키지의 정보와 의존성을 정의해요. 아래�
 }
 ```
 
+## npm 모듈 이름에 @ 넣기
+
+모듈에 "@"가 들어간채로 npm publish를 진행하게되면, npm이 해당 패키지를 비공개 패키지로 인식해 에러가 발생해요. 공개 패키지라는 것을 알리기 위해 다음과 같은 명령어를 사용해요!
+
+> npm publish --access=public
+
+## Typescript 모듈 명시하기!
+
+![Alt text](https://velog.velcdn.com/images/pengoose_dev/post/76a25c7d-a00e-4120-ba2f-8f1987897876/image.png)
+
+Typescript 모듈을 사용하다보면, 위와 같은 TS 표시를 본 적이 있을거에요!
+위와 같은 마크를 추가하고자 한다면, 아래와 같이 package.json의 "types" field를 추가해주도록 해요!
+
+```json
+"types": "index.d.ts",
+```
+
 ---
 
-### [tsconfig](https://yamoo9.gitbook.io/typescript/cli-env/tsconfig)설정 (Typescript 사용 시)
+## [tsconfig](https://yamoo9.gitbook.io/typescript/cli-env/tsconfig)설정 (Typescript 사용 시)
 
 Typescript 프로젝트에서 tsconfig.json 파일을 통해 컴파일러 옵션을 설정할 수 있어요. :)
 
