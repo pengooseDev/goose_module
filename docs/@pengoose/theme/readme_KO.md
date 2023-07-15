@@ -1,11 +1,11 @@
-# @goose/theme
+# @pengoose/theme
 
-`@goose/theme` is a module that provides a theme (color palette) that can be used in React and Next.js projects. This module can be used in conjunction with CSS-in-JS libraries like `styled-components` and `emotion`.
+`@pengoose/theme`은 React 및 Next.js 프로젝트에서 사용할 수 있는 테마(컬러 팔레트)를 제공하는 모듈입니다. 이 모듈은 CSS-in-JS 라이브러리인 `styled-components`와 `emotion`과 함께 사용할 수 있습니다.
 
-# Installation
+# 설치
 
 ```bash
-npm install @goose/theme
+npm install @pengoose/theme
 ```
 
 # darkTheme
@@ -14,7 +14,7 @@ npm install @goose/theme
 
 ## Color
 
-| name        | color                                                                                                         |
+| 이름        | 색상                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------- |
 | primary     | ![#30B198](https://via.placeholder.com/15/30B198/000000?text=+) `#30B198`                                     |
 | secondary   | ![#FFC857](https://via.placeholder.com/15/FFC857/000000?text=+) `#FFC857`                                     |
@@ -26,7 +26,7 @@ npm install @goose/theme
 
 ## Background
 
-| name        | color                                                                     |
+| 이름        | 색상                                                                      |
 | ----------- | ------------------------------------------------------------------------- |
 | default     | ![#191A23](https://via.placeholder.com/15/191A23/000000?text=+) `#191A23` |
 | primary     | ![#14141C](https://via.placeholder.com/15/14141C/000000?text=+) `#14141C` |
@@ -45,7 +45,7 @@ npm install @goose/theme
 
 ## Color
 
-| name        | color                                                                                                      |
+| 이름        | 색상                                                                                                       |
 | ----------- | ---------------------------------------------------------------------------------------------------------- |
 | primary     | ![#30B198](https://via.placeholder.com/15/30B198/000000?text=+) `#30B198`                                  |
 | secondary   | ![#FFC857](https://via.placeholder.com/15/FFC857/000000?text=+) `#FFC857`                                  |
@@ -57,7 +57,7 @@ npm install @goose/theme
 
 ## Background
 
-| name        | color                                                                                                         |
+| 이름        | 색상                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------- |
 | default     | ![#F8FAFB](https://via.placeholder.com/15/F8FAFB/000000?text=+) `#F8FAFB`                                     |
 | primary     | ![#F0F1F5](https://via.placeholder.com/15/F0F1F5/000000?text=+) `#F0F1F5`                                     |
@@ -70,12 +70,12 @@ npm install @goose/theme
 
 ---
 
-# Usage
+# 사용 방법
 
 ```tsx
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from '@goose/theme';
+import { lightTheme, darkTheme } from '@pengoose/theme';
 import { Components } from './yourComponents';
 
 function App() {
@@ -96,7 +96,7 @@ function App() {
 export default App;
 ```
 
-You can use the theme by passing the theme object to the theme props of the ThemeProvider provided by styled-components or emotion. :)
+styled-components 또는 emotion에서 제공하는 ThemeProvider의 theme props에 theme 객체를 전달하여 테마를 사용할 수 있습니다. :)
 
 ```tsx
 import styled from 'styled-components';
