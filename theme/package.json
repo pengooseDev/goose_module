@@ -1,5 +1,5 @@
 {
-  "name": "@goose/theme",
+  "name": "@pengoose/theme",
   "version": "1.0.0",
   "description": "@goose/theme is a theme library for styled-components and emotion. This library provides themes to easily manage the design and styling of web applications.",
   "main": "libs/index.js",
@@ -11,7 +11,7 @@
     "build": "tsc"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.4.2",
     "typescript": "^5.1.6"
