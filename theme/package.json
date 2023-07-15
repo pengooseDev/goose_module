@@ -1,0 +1,15 @@
+{
+  "name": "@goose/theme",
+  "version": "1.0.0",
+  "description": "@goose/theme is a theme library for styled-components and emotion. This library provides themes to easily manage the design and styling of web applications.",
+  "main": "libs/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC"
+}
