@@ -16,7 +16,7 @@ To apply Typescript to the package, install Typescript and Node.js type definiti
 > npm install --save-dev typescript @types/node
 ```
 
-# 2. package.json 설정
+# 2. Setting package.json
 
 The package.json file defines the package's information and dependencies. Refer to the example below!
 
@@ -40,6 +40,22 @@ The option "build": "tsc" should be added to your package.json only if you're us
     "typescript": "^5.1.6"
   }
 }
+```
+
+## Adding @ to npm module names
+
+When you try to publish a module with "@" in its name, npm considers it a scoped package and treats it as a private package, resulting in an error. To indicate that it's a public package, you can use the following command:
+
+> npm publish --access=public
+
+## Specifying TypeScript Modules
+
+![Alt text](https://velog.velcdn.com/images/pengoose_dev/post/76a25c7d-a00e-4120-ba2f-8f1987897876/image.png)
+
+If you've used TypeScript modules, you may have come across the TS badge shown above! If you want to add a similar badge, you can do so by adding the "types" field to your package.json file as follows:
+
+```json
+"types": "index.d.ts",
 ```
 
 ---
@@ -78,7 +94,7 @@ API request wrapper: A function that wraps certain API requests for easy sending
 UI components: Reusable UI components like buttons, forms, dialogs, etc.
 It's simpler and cooler than you thought, isn't it? 🥳
 
-# 4. readme 작성
+# 4. Add readme
 
 Now it's time to document how to use your module! It's important to write clearly and kindly so others can easily understand and use your awesome code.
 
@@ -90,7 +106,7 @@ Example code: Showing example code on how to actually use this module can be a h
 API documentation: Document the functions or methods provided by the module, as well as their arguments and return values in detail!
 Practicing good documentation helps decide how user-friendly your code is, and also greatly helps to improve your "collaboration skills" as a developer. Don't be too scared and give it a try! :)
 
-# 5. build
+# 5. Build
 
 If you're using Typescript or Babel, you need to go through the compilation process (build) and build your source code!
 
