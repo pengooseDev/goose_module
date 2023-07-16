@@ -7,6 +7,7 @@
     "lib"
   ],
   "types": "index.d.ts",
+  "private": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
