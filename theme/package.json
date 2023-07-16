@@ -1,6 +1,6 @@
 {
   "name": "@pengoose/theme",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "@goose/theme is a theme library for styled-components and emotion. This library provides themes to easily manage the design and styling of web applications.",
   "main": "libs/index.js",
   "files": [
