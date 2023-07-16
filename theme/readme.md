@@ -8,6 +8,10 @@
 npm install @pengoose/theme
 ```
 
+```bash
+yarn add @pengoose/theme
+```
+
 # darkTheme
 
 ![](https://i.imgur.com/tOlYfht.png)
