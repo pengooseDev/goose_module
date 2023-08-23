@@ -27,14 +27,16 @@ package.json 파일은 패키지의 정보와 의존성을 정의해요. 아래�
   "name": "module-name",
   "version": "1.0.0",
   "description": "",
-  "main": "libs/index.js",
+  "main": "lib/index.js",
   "files": ["lib"],
+  "types": "lib/index.d.ts",
+  "private": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "pengoose",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.3.3",
     "typescript": "^5.1.6"
