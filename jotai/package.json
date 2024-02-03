@@ -1,0 +1,32 @@
+{
+  "name": "@pengoose/jotai",
+  "version": "1.0.0",
+  "description": "A convention manager for Jotai state management.",
+  "main": "index.js",
+  "files": [
+    "lib"
+  ],
+  "types": "lib/index.d.ts",
+  "private": false,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "pengooseDev",
+  "license": "MIT",
+  "dependencies": {
+    "jotai": "^2.6.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "@types/react": "^18.2.52",
+    "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pengooseDev/goose/tree/main/jotai"
+  }
+}

@@ -1,3 +1,32 @@
+# goose_module
+
+<div align="center">
+  <h1>🐧 Goose module</h1>
+  <p>📦 A guide to creating and publishing your first npm package.</p>
+</div>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/author-pengoose-blue?style=flat-square">
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square">
+
+---
+
+  <div>
+
+    modules
+
+  </div>
+
+[**jotai**](./jotai/README.md) | [**theme**](./theme/readme.md)
+
+---
+
+</div>
+</div>
+
+---
+
 # 1. 패키지 생성
 
 먼저, npm init 명령어를 통해 새로운 패키지를 생성해요.
