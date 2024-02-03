@@ -2,7 +2,7 @@
   "name": "@pengoose/jotai",
   "version": "1.0.0",
   "description": "A convention manager for Jotai state management.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "files": [
     "lib"
   ],
