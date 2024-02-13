@@ -59,57 +59,53 @@ import { PlaylistStatus, Music } from '@/types';
 // Extend AtomManager to create your state manager
 export class Playlist extends AtomManager<PlaylistStatus> {
   // Implement selectors and actions
-  public get selectors() {
-    return {
-      playlist: atom((get) => {
-        const { playlist } = get(this.atom);
+  public selectors = {
+    playlist: atom((get) => {
+      const { playlist } = get(this.atom);
 
-        return playlist;
-      }),
+      return playlist;
+    }),
 
-      index: atom((get) => {
-        const { index } = get(this.atom);
+    index: atom((get) => {
+      const { index } = get(this.atom);
 
-        return index;
-      }),
+      return index;
+    }),
 
-      currentMusic: atom((get) => {
-        const { playlist, index } = get(this.atom);
+    currentMusic: atom((get) => {
+      const { playlist, index } = get(this.atom);
 
-        return playlist[index];
-      }),
-    };
-  }
+      return playlist[index];
+    }),
+  };
 
-  public get actions() {
-    return {
-      add: atom(null, (get, set, music: Music) => {
-        const { playlist } = get(this.atom);
+  public actions = {
+    add: atom(null, (get, set, music: Music) => {
+      const { playlist } = get(this.atom);
 
-        if (playlist.some(({ id }) => id === music.id)) return;
+      if (playlist.some(({ id }) => id === music.id)) return;
 
-        set(this.atom, (prev: PlaylistStatus) => ({
-          ...prev,
-          playlist: [...prev.playlist, music],
-        }));
-      }),
+      set(this.atom, (prev: PlaylistStatus) => ({
+        ...prev,
+        playlist: [...prev.playlist, music],
+      }));
+    }),
 
-      next: atom(null, (get, set) => {
-        const { playlist, index } = get(this.atom);
+    next: atom(null, (get, set) => {
+      const { playlist, index } = get(this.atom);
 
-        const isEmpty = this.isEmpty(playlist);
+      const isEmpty = this.isEmpty(playlist);
 
-        if (isEmpty) return;
+      if (isEmpty) return;
 
-        const isLastMusic = index === playlist.length - 1;
+      const isLastMusic = index === playlist.length - 1;
 
-        set(this.atom, (prev: PlaylistStatus) => ({
-          ...prev,
-          index: isLastMusic ? 0 : prev.index + 1,
-        }));
-      }),
-    };
-  }
+      set(this.atom, (prev: PlaylistStatus) => ({
+        ...prev,
+        index: isLastMusic ? 0 : prev.index + 1,
+      }));
+    }),
+  };
 
   // Implement encapsulated helper methods :)
   private isEmpty(playlist: Music[]) {
@@ -152,13 +148,13 @@ export const Playlist: AtomManagerStatic<PlaylistStatus> = class Playlist extend
   };
 
   // Implement selectors and actions
-  public get selectors() {
+  public selectors = {
     // ...
-  }
+  };
 
-  public get actions() {
+  public actions = {
     // ...
-  }
+  };
 };
 
 // Create an instance of the state manager
