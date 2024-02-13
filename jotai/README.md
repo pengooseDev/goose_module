@@ -235,6 +235,20 @@ export const Playlist = () => {
   😗👍
 </div>
 
+---
+
+## Introducing StrictAtomManager for Enhanced State Management
+
+For projects requiring a more disciplined approach to state management, `StrictAtomManager` offers a stricter and more structured way to manage your application's state using Jotai. Unlike `AtomManager`, which provides flexibility in defining selectors and actions, `StrictAtomManager` enforces the implementation of selectors for every property and actions for every possible mutation of the state type `T`. This ensures comprehensive coverage and encourages a meticulous management strategy that aligns well with object-oriented programming principles.
+
+### Why Use StrictAtomManager?
+
+- **Full Coverage**: Ensures that every aspect of your state is intentionally managed and accessed through defined selectors and actions.
+- **Disciplined State Management**: Encourages a more structured approach to defining and mutating state, making your codebase cleaner and more maintainable.
+- **Consistency**: By enforcing a strict pattern, it helps maintain consistency across your project's state management practices.
+
+Incorporating `StrictAtomManager` into your project promotes a rigorous state management framework, perfect for complex applications where state integrity is paramount. To adopt a stricter discipline in your state management, consider using `StrictAtomManager` for a robust and structured approach.
+
 ## Contributing
 
 Contributions are welcome! For major changes, please open an issue first to discuss what you would like to change. ;)
