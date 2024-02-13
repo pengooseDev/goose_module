@@ -21,11 +21,8 @@
 [**jotai**](./jotai/README.md) | [**theme**](./theme/readme.md)
 
 ---
-
-</div>
 </div>
 
----
 
 # 1. 패키지 생성
 
