@@ -23,5 +23,5 @@ export const useManager = <T>(atomManager: {
     {} as ActionValues
   );
 
-  return { ...selectors, ...actions };
+  return { selectors: { ...selectors }, actions: { ...actions } };
 };
