@@ -173,26 +173,26 @@ The `AtomManager` class is designed to be used with custom hooks to encapsulate 
 
 ```tsx
 // usePlaylist.ts
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useManager } from '@pengoose/jotai';
 import { playlistManager } from '@/viewModel';
 
 export const usePlaylist = () => {
   const {
     selectors: { playlist, currentMusic },
     actions: { play, next, prev, add, remove },
-  } = playlistManager;
+  } = useManager(playlistManager);
 
   return {
     // Getters(Selectors)
-    playlist: useAtomValue(playlist),
-    currentMusic: useAtomValue(currentMusic),
+    playlist,
+    currentMusic,
 
     // Setters(Actions)
-    play: useSetAtom(play),
-    next: useSetAtom(next),
-    prev: useSetAtom(prev),
-    add: useSetAtom(add),
-    remove: useSetAtom(remove),
+    play,
+    next,
+    prev,
+    add,
+    remove,
   };
 };
 ```
