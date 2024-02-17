@@ -1,2 +1,1 @@
-export * from './atomManager';
-export * from './strictAtomManager';
+export * from './useManager';
