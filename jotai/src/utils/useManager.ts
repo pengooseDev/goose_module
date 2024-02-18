@@ -1,27 +1,21 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { ActionValues, Actions, SelectorValues, Selectors } from 'types';
+import { AtomManager } from 'manager';
+import { ExtractActions, ExtractSelectors } from 'types/useManager';
 
-export const useManager = <T>(atomManager: {
-  selectors: Selectors<T>;
-  actions: Actions<T>;
-}) => {
-  const selectors = Object.entries(atomManager.selectors).reduce(
-    (acc, [key, selectorAtom]) => {
-      acc[key as keyof T] = useAtomValue(selectorAtom);
+export const useManager = <T extends AtomManager<any>>(manager: T) => {
+  const selectors = Object.fromEntries(
+    Object.entries(manager.selectors).map(([key, atom]) => [
+      key,
+      useAtomValue(atom),
+    ])
+  ) as ExtractSelectors<T['selectors']>;
 
-      return acc;
-    },
-    {} as SelectorValues<T>
-  );
+  const actions = Object.fromEntries(
+    Object.entries(manager.actions).map(([key, actionAtom]) => [
+      key,
+      useSetAtom(actionAtom),
+    ])
+  ) as ExtractActions<T['actions']>;
 
-  const actions = Object.entries(atomManager.actions).reduce(
-    (acc, [key, actionAtom]) => {
-      acc[key] = useSetAtom(actionAtom);
-
-      return acc;
-    },
-    {} as ActionValues
-  );
-
-  return { selectors: { ...selectors }, actions: { ...actions } };
+  return { selectors, actions };
 };

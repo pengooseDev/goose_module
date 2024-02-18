@@ -1,14 +1,11 @@
-import { Atom, WritableAtom, useAtomValue, useSetAtom } from 'jotai';
+import { Atom, WritableAtom } from 'jotai';
 
-// atomManager
-export type SelectorAtom<T> = Atom<T>;
-export type ActionAtom<T> = WritableAtom<T | null, any, void>;
-
-// useManager
-export type Selectors<T> = Record<string, SelectorAtom<T>>;
-export type Actions<T> = Record<string, ActionAtom<T>>;
-
-export type SelectorValues<T> = {
-  [K in keyof T]: ReturnType<typeof useAtomValue>;
+export type Selectors<T> = {
+  [K in keyof Partial<T>]: Atom<T[K]>;
 };
-export type ActionValues = { [key: string]: ReturnType<typeof useSetAtom> };
+
+export type StrictSelectors<T> = { [K in keyof T]: Atom<T[K]> };
+
+export type Actions<T> = {
+  [key: string]: WritableAtom<T | null, any, void>;
+};

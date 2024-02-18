@@ -1,5 +1,5 @@
-import { Atom, WritableAtom, atom } from 'jotai';
-import { ActionAtom, SelectorAtom } from 'types';
+import { WritableAtom, atom } from 'jotai';
+import { Actions, StrictSelectors } from 'types';
 
 /**
  * StrictAtomManager is an abstract class designed to encapsulate and manage state logic using Jotai atoms
@@ -25,9 +25,7 @@ export abstract class StrictAtomManager<T> {
    * leveraging Jotai's `get` function for specific state part access. This strict requirement ensures full coverage
    * and encapsulation of state reading logic, facilitating selective access to all state parts.
    */
-  abstract selectors: {
-    [K in keyof T]: SelectorAtom<T[K]>;
-  };
+  abstract selectors: StrictSelectors<T>;
 
   /**
    * The abstract property `actions` must be implemented to return a mapping of functions
@@ -35,9 +33,7 @@ export abstract class StrictAtomManager<T> {
    * state mutation logic, similar to AtomManager, but with a focus on the strict management paradigm,
    * enhancing the discoverability and reusability of state management operations.
    */
-  abstract actions: {
-    [key: string]: ActionAtom<T>;
-  };
+  abstract actions: Actions<T>;
 }
 
 /**
