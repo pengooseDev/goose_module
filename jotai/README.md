@@ -3,13 +3,13 @@
 <div align="center">
 
 <h3>A simple and powerful state manager for React using Jotai.</h2>
-
-  <picture width="250">
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/pengooseDev/goose_module/assets/73521518/b6e173a5-14fe-46fa-b5b8-9cdae09f3958" width="250">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/pengooseDev/goose_module/assets/73521518/78f1f5f5-dee5-4e8b-b066-3986534818fa" width="250">
-    <img alt="IMAGE" src="http://LIGHT_IMAGE_URL.png">
+  <picture width="350">
+    <source media="(prefers-color-scheme: light)" srcset="https://i.imgur.com/lPN6qxb.png" width="550">
+    <source media="(prefers-color-scheme: dark)" srcset="https://i.imgur.com/N5aPzdJ.png" width="550">
+    <img alt="IMAGE" src="https://i.imgur.com/lPN6qxb.png">
   </picture>
-  <h6> * by coalowl </h6>
+  <h4> * Illustration created by <a href="https://twitter.com/takuan1469414">沢庵</a> </h4>
+
 </div>
 
 ## Installation
