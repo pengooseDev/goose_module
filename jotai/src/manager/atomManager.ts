@@ -1,5 +1,4 @@
 import { Atom, WritableAtom, atom } from 'jotai';
-import { Actions, Selectors } from 'types';
 
 /**
  * AtomManager is an abstract class designed to encapsulate and manage state logic using Jotai atoms.
@@ -23,14 +22,18 @@ export abstract class AtomManager<T> {
    * that leverage Jotai's `get` function to read specific parts of the state.
    * This mechanism allows for selective state access and encapsulation of state reading logic.
    */
-  abstract selectors: Selectors<T>;
+  abstract selectors: {
+    [K in keyof Partial<T>]: Atom<T[K]>;
+  };
 
   /**
    * The abstract property `actions` must be implemented to return a mapping of functions
    * that utilize Jotai's `set` function for state updates. These actions are designed to encapsulate
    * state mutation logic, enhancing the discoverability and reusability of state management operations.
    */
-  abstract actions: Actions<T>;
+  abstract actions: {
+    [key: string]: WritableAtom<T | null, any, void>;
+  };
 }
 
 /**
