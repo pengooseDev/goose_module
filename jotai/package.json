@@ -1,6 +1,6 @@
 {
   "name": "@pengoose/jotai",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A convention manager for Jotai state management.",
   "main": "lib/index.js",
   "files": [

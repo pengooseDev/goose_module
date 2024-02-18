@@ -10,7 +10,7 @@ import { Actions, Selectors } from 'types';
  * @template T The type of the state this AtomManager manages.
  */
 export abstract class AtomManager<T> {
-  protected initialState: T;
+  public initialState: T;
   protected atom: WritableAtom<T, any, void>;
 
   constructor(initialState: T) {

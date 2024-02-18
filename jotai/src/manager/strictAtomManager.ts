@@ -12,7 +12,7 @@ import { Actions, StrictSelectors } from 'types';
  * @template T The type of the state this StrictAtomManager manages.
  */
 export abstract class StrictAtomManager<T> {
-  protected initialState: T;
+  public initialState: T;
   protected atom: WritableAtom<T, any, void>;
 
   constructor(initialState: T) {
