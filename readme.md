@@ -10,12 +10,14 @@
 <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square">
 
+<br/>
   <picture width="250">
     <source media="(prefers-color-scheme: light)" srcset="https://i.imgur.com/lPN6qxb.png" width="350">
     <source media="(prefers-color-scheme: dark)" srcset="https://i.imgur.com/N5aPzdJ.png" width="350">
     <img alt="IMAGE" src="https://i.imgur.com/lPN6qxb.png">
   </picture>
-  <h4> * Illustration created by <a href="https://twitter.com/takuan1469414">沢庵</a> </h4>
+<h4> * Illustration created by <a href="https://twitter.com/takuan1469414">沢庵</a> </h4>
+
 
 [**KO**](./docs/npm_KO.md) | [**EN**](./docs/npm_EN.md)
 
