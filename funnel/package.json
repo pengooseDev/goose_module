@@ -1,6 +1,6 @@
 {
   "name": "@pengoose/funnel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Simple and Easy Funnel context Provider for React",
   "main": "lib/index.js",
   "files": [
@@ -25,5 +25,11 @@
   },
   "dependencies": {
     "react": "^18.2.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "funnel",
+    "context",
+    "provider"
+  ]
 }
