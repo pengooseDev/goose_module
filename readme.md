@@ -1,28 +1,39 @@
-# goose_module
-
 <div align="center">
-  <h1>🐧 Goose module</h1>
-  <p>📦 A guide to creating and publishing your first npm package.</p>
+
+# 🐧 Goose module
+
+<h3>
+  📦 A guide to creating and publishing your first npm package.
+</h3>
+
+<img src="https://img.shields.io/badge/author-pengoose-blue?style=flat-square">
+<img src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
+<img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square">
+
+<br/>
+  <picture width="250">
+    <source media="(prefers-color-scheme: light)" srcset="https://i.imgur.com/lPN6qxb.png" width="350">
+    <source media="(prefers-color-scheme: dark)" srcset="https://i.imgur.com/N5aPzdJ.png" width="350">
+    <img alt="IMAGE" src="https://i.imgur.com/lPN6qxb.png">
+  </picture>
+<h4> * Illustration created by <a href="https://twitter.com/takuan1469414">沢庵</a> </h4>
+
+
+[**KO**](./docs/npm_KO.md) | [**EN**](./docs/npm_EN.md)
+
 </div>
-
-<div align="center">
-  <img src="https://img.shields.io/badge/author-pengoose-blue?style=flat-square">
-  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square">
 
 ---
 
-  <div>
+<div align="center">
 
-    modules
-
-  </div>
+# 📚 Modules
 
 [**jotai**](./jotai/README.md) | [**theme**](./theme/readme.md)
 
----
 </div>
 
+---
 
 # 1. 패키지 생성
 

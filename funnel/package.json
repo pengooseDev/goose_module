@@ -1,7 +1,7 @@
 {
-  "name": "@pengoose/",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@pengoose/funnel",
+  "version": "1.0.1",
+  "description": "A Simple and Easy Funnel context Provider for React",
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -16,12 +16,20 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.4.2",
+    "@types/react": "^18.2.66",
     "typescript": "^5.1.6"
   },
   "repository": {
     "type": "git",
     "url": ""
   },
-  "dependencies": {},
-  "keywords": []
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "keywords": [
+    "react",
+    "funnel",
+    "context",
+    "provider"
+  ]
 }

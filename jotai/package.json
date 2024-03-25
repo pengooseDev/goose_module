@@ -28,5 +28,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/pengooseDev/goose/tree/main/jotai"
-  }
+  },
+  "keywords": [
+    "jotai",
+    "state",
+    "management",
+    "context",
+    "provider",
+    "convention",
+    "manager"
+  ]
 }
