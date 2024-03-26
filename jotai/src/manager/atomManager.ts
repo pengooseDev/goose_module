@@ -23,7 +23,7 @@ export abstract class AtomManager<T> {
    * This mechanism allows for selective state access and encapsulation of state reading logic.
    */
   abstract selectors: {
-    [K in keyof Partial<T>]: Atom<T[K]>;
+    [K in keyof Partial<T>]: Atom<any>;
   };
 
   /**

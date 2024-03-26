@@ -12,6 +12,10 @@
 
 </div>
 
+## Introduction
+
+`@pengoose/jotai` is a `Convention manager` for managing state in React applications using Jotai. It provides a simple and structured way to define and manage your application's state, making it easier to organize and maintain your state logic. By following a set of conventions, you can create a consistent and scalable state management system that is easy to understand and maintain.
+
 ## Installation
 
 Install the package using npm:
@@ -26,11 +30,11 @@ Or using yarn:
 yarn add @pengoose/jotai
 ```
 
-## Usage
+## Getting Started (Step by Step)
 
 To manage your state with @pengoose/jotai, define your state interfaces and extend the `AtomManager` class to create a custom state manager.
 
-### Example Data
+### Step1: Define your state interfaces
 
 ```ts
 // example/types.ts
@@ -47,18 +51,19 @@ export interface PlaylistStatus {
 }
 ```
 
-## Example of a `Playlist` state manager:
+### Step2: Create a custom state manager
 
-### AtomManager
+- Extend the `AtomManager` class to create your state manager.
+- you have to implement selectors and actions in the `AtomManager` class.
 
 ```ts
 import { atom } from 'jotai';
 import { AtomManager } from '@pengoose/jotai';
 import { PlaylistStatus, Music } from '@/types';
 
-// Extend AtomManager to create your state manager
+// 1. Extend AtomManager to create your state manager
 export class Playlist extends AtomManager<PlaylistStatus> {
-  // Implement selectors and actions
+  // 2. Implement selectors
   public selectors = {
     playlist: atom((get) => {
       const { playlist } = get(this.atom);
@@ -66,19 +71,16 @@ export class Playlist extends AtomManager<PlaylistStatus> {
       return playlist;
     }),
 
-    index: atom((get) => {
-      const { index } = get(this.atom);
-
-      return index;
-    }),
-
     currentMusic: atom((get) => {
       const { playlist, index } = get(this.atom);
 
       return playlist[index];
     }),
+
+    // ... other selectors
   };
 
+  // 3. Implement actions
   public actions = {
     add: atom(null, (get, set, music: Music) => {
       const { playlist } = get(this.atom);
@@ -91,23 +93,10 @@ export class Playlist extends AtomManager<PlaylistStatus> {
       }));
     }),
 
-    next: atom(null, (get, set) => {
-      const { playlist, index } = get(this.atom);
-
-      const isEmpty = this.isEmpty(playlist);
-
-      if (isEmpty) return;
-
-      const isLastMusic = index === playlist.length - 1;
-
-      set(this.atom, (prev: PlaylistStatus) => ({
-        ...prev,
-        index: isLastMusic ? 0 : prev.index + 1,
-      }));
-    }),
+    // ... other actions
   };
 
-  // Implement encapsulated helper methods :)
+  // 4. Implement helper methods
   private isEmpty(playlist: Music[]) {
     return playlist.length === 0;
   }
@@ -117,7 +106,7 @@ export class Playlist extends AtomManager<PlaylistStatus> {
   }
 }
 
-// Create an instance of the state manager
+// 5. Create an instance of the Playlist class
 const initialState: PlaylistStatus = {
   playlist: [],
   index: 0,
@@ -126,50 +115,11 @@ const initialState: PlaylistStatus = {
 export const playlistManager = new Playlist(initialState);
 ```
 
-### AtomManager with AtomManagerStatic
-
-```ts
-import { atom } from 'jotai';
-import { AtomManager, AtomManagerStatic } from '@pengoose/jotai';
-import { Music } from '@/types';
-
-// When using AtomManagerStatic you should sync the selectors with the Generic type
-export interface PlaylistStatus {
-  playlist: Music[];
-  index: number;
-  currentMusic: Music;
-}
-
-// When using AtomManagerStatic, you must define the initial state as a static property
-export const Playlist: AtomManagerStatic<PlaylistStatus> = class Playlist extends AtomManager<PlaylistStatus> {
-  static INITIAL_STATE: PlaylistStatus = {
-    playlist: [],
-    index: 0,
-  };
-
-  // Implement selectors and actions
-  public selectors = {
-    // ...
-  };
-
-  public actions = {
-    // ...
-  };
-};
-
-// Create an instance of the state manager
-export const playlistManager = new Playlist(Playlist.INITIAL_STATE);
-```
-
 ---
 
-## Best Practices
+### Step3: Wrap instance of AtomManager with `useManager` hook
 
-The `AtomManager` class is designed to be used with custom hooks to encapsulate the state management logic and make it easier to use in your components.
-
-> Flow: Class(AtomManager) --> custom hook --> Component(View)
-
-### Custom Hook
+- Use the `useManager` hook to get the selectors and actions from the AtomManager instance in your custom hooks. This hook provides a convenient way to `convert the atom to state and setter functions`.
 
 ```tsx
 // usePlaylist.ts
@@ -180,7 +130,7 @@ export const usePlaylist = () => {
   const {
     selectors: { playlist, currentMusic },
     actions: { play, next, prev, add, remove },
-  } = useManager(playlistManager);
+  } = useManager(playlistManager); // 😀👍
 
   return {
     // Getters(Selectors)
@@ -196,6 +146,40 @@ export const usePlaylist = () => {
   };
 };
 ```
+
+### ⛳️ If you Don't use `useManager` hook 🥲
+
+- You can use `useAtomValue` and `useSetAtom` hooks from Jotai to get and set the state of the AtomManager instance. But, it's a bit cumbersome to use. 😨
+
+```tsx
+// usePlaylist.ts
+import { useAtomValue, useSetAtom } from 'jotai';
+import { playlistManager } from '@/viewModel';
+
+export const usePlaylist = () => {
+  const {
+    selectors: { playlist, currentMusic },
+    actions: { play, next, prev, add, remove },
+  } = playlistManager;
+
+  return {
+    // Getters(Selectors) 😨
+    playlist: useAtomValue(playlist),
+    currentMusic: useAtomValue(currentMusic),
+
+    // Setters(Actions) 😨
+    play: useSetAtom(play),
+    next: useSetAtom(next),
+    prev: useSetAtom(prev),
+    add: useSetAtom(add),
+    remove: useSetAtom(remove),
+  };
+};
+```
+
+---
+
+### Step4: Use custom hook in your components 🚀
 
 ```tsx
 // Playlist.tsx
@@ -231,23 +215,17 @@ export const Playlist = () => {
 };
 ```
 
+---
+
+## Summary
+
+The `AtomManager` class is designed to be used with custom hooks to encapsulate the state management logic and make it easier to use in your components.
+
+> Flow: Class(AtomManager) --> custom hook --> Component(View)
+
 <div align="center">
   😗👍
 </div>
-
----
-
-## Introducing StrictAtomManager for Enhanced State Management
-
-For projects requiring a more disciplined approach to state management, `StrictAtomManager` offers a stricter and more structured way to manage your application's state using Jotai. Unlike `AtomManager`, which provides flexibility in defining selectors and actions, `StrictAtomManager` enforces the implementation of selectors for every property and actions for every possible mutation of the state type `T`. This ensures comprehensive coverage and encourages a meticulous management strategy that aligns well with object-oriented programming principles.
-
-### Why Use StrictAtomManager?
-
-- **Full Coverage**: Ensures that every aspect of your state is intentionally managed and accessed through defined selectors and actions.
-- **Disciplined State Management**: Encourages a more structured approach to defining and mutating state, making your codebase cleaner and more maintainable.
-- **Consistency**: By enforcing a strict pattern, it helps maintain consistency across your project's state management practices.
-
-Incorporating `StrictAtomManager` into your project promotes a rigorous state management framework, perfect for complex applications where state integrity is paramount. To adopt a stricter discipline in your state management, consider using `StrictAtomManager` for a robust and structured approach.
 
 ## Contributing
 
