@@ -14,14 +14,14 @@
   },
   "author": "pengooseDev",
   "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^20.4.2",
-    "typescript": "^5.1.6"
-  },
   "repository": {
     "type": "git",
     "url": ""
   },
   "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "typescript": "^5.1.6"
+  },
   "keywords": []
 }
