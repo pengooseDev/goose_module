@@ -18,7 +18,6 @@
   </picture>
 <h4> * Illustration created by <a href="https://twitter.com/takuan1469414">沢庵</a> </h4>
 
-
 [**KO**](./docs/npm_KO.md) | [**EN**](./docs/npm_EN.md)
 
 </div>
@@ -29,7 +28,7 @@
 
 # 📚 Modules
 
-[**jotai**](./jotai/README.md) | [**theme**](./theme/readme.md)
+[**jotai**](./jotai/README.md) | [**theme**](./theme/readme.md) | [**funnel**](./funnel/README.md) | [**goostate**](./goostate/README.md)
 
 </div>
 
