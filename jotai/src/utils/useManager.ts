@@ -63,7 +63,9 @@ export const useManager = <T extends AtomManager<any>>(manager: T) => {
       infer U,
       void
     >
-      ? (param: U[0]) => void
+      ? U[0] extends undefined
+        ? () => void
+        : (param: U[0]) => void
       : never;
   };
 
