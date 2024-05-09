@@ -28,7 +28,7 @@
 
 # 📚 Modules
 
-[**jotai**](./jotai/README.md) | [**theme**](./theme/readme.md) | [**funnel**](./funnel/README.md) | [**goostate**](./goostate/README.md)
+[**jotai**](https://github.com/pengooseDev/pengoose-jotai) | [**theme**](./theme/readme.md) | [**funnel**](./funnel/README.md) | [**goostate**](./goostate/README.md)
 
 </div>
 
