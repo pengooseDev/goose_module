@@ -2,15 +2,15 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "commonjs",
-    "outDir": "./lib",
-    "rootDir": "./src",
-    "baseUrl": "./src",
     "strict": true,
     "esModuleInterop": true,
-    "declaration": true
+    "declaration": true,
+    "rootDir": ".",
+    "outDir": "./lib",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src/**/*", "index.ts"],
-  "paths": {
-    "*": ["*"]
-  }
+  "include": ["src/**/*", "index.ts", "tests/**/*"]
 }
