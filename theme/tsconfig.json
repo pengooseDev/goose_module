@@ -4,10 +4,10 @@
     "module": "commonjs",
     "outDir": "./lib",
     "rootDir": ".",
+    "baseUrl": ".",
     "strict": true,
     "esModuleInterop": true,
     "declaration": true,
-    "baseUrl": ".",
     "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"]
