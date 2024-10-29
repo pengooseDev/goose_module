@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "outDir": "./lib",
+    "rootDir": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*", "index.ts", "tests/**/*"]
+}
