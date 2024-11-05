@@ -1,4 +1,4 @@
-# @pengoose/Theme
+# @pengoose/theme
 
 This module have dependencies on `tailwindcss` & `Shadcn`.
 
