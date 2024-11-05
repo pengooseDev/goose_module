@@ -3,15 +3,15 @@
     "target": "es2015",
     "module": "commonjs",
     "outDir": "./lib",
-    "rootDir": ".",
+    "rootDir": "./src",
     "baseUrl": ".",
     "strict": true,
     "esModuleInterop": true,
     "declaration": true,
     "jsx": "react-jsx",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "index.ts", "tests/**/*"]
+  "include": ["src/**/*", "tests/**/*"]
 }

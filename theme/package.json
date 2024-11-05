@@ -1,6 +1,6 @@
 {
   "name": "@pengoose/theme",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "A Simple and Easy Theme Manager for React",
   "main": "lib/index.js",
   "files": [
