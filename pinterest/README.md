@@ -1,6 +1,6 @@
 # @pengoose/pinterest
 
-<img width="1289" alt="image" src="https://github.com/user-attachments/assets/44e18908-2d74-4b7b-9300-997880c228a3">
+![Image](https://github.com/user-attachments/assets/676e907f-faf9-43ff-8f72-913eb9aa6e1e)
 
 ## install
 
