@@ -11,6 +11,8 @@ interface LayoutProps extends React.PropsWithChildren {
   left?: ReactNode;
   right?: ReactNode;
   bottom?: ReactNode;
+  innerPadding?: string;
+  style?: CSSProperties;
 }
 
 const Section = ({
@@ -46,7 +48,15 @@ const useMeasure = () => {
   return [ref, size] as const;
 };
 
-export const Layout = ({ top, left, right, bottom, children }: LayoutProps) => {
+export const Layout = ({
+  top,
+  left,
+  right,
+  bottom,
+  children,
+  innerPadding,
+  style,
+}: LayoutProps) => {
   const [topRef, topSize] = useMeasure();
   const [bottomRef, bottomSize] = useMeasure();
   const [leftRef] = useMeasure();
@@ -56,6 +66,7 @@ export const Layout = ({ top, left, right, bottom, children }: LayoutProps) => {
     display: 'flex',
     flexDirection: 'column',
     height: '100vh',
+    ...style,
   };
 
   const contentAreaStyle: CSSProperties = {
@@ -65,7 +76,9 @@ export const Layout = ({ top, left, right, bottom, children }: LayoutProps) => {
   };
 
   const sideStyle = (height: number): CSSProperties => ({
-    height: `calc(100vh - ${height}px)`,
+    height: `calc(100vh - ${height}px - ${innerPadding || '0'} - ${
+      innerPadding || '0'
+    })`,
     overflowY: 'auto',
     flexShrink: 0,
   });
@@ -73,6 +86,7 @@ export const Layout = ({ top, left, right, bottom, children }: LayoutProps) => {
   const mainContentStyle: CSSProperties = {
     flex: 1,
     overflowY: 'auto',
+    padding: innerPadding || '0',
   };
 
   const totalHeight = topSize.height + bottomSize.height;

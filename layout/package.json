@@ -1,6 +1,6 @@
 {
   "name": "@pengoose/layout",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "A flexible layout component for React with dynamic sections and adjustable areas for top, left, right, and bottom regions. Allows content adjustment based on provided sections, making it suitable for complex UIs.",
   "main": "lib/index.js",
   "files": [
