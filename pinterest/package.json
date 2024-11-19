@@ -1,6 +1,6 @@
 {
   "name": "@pengoose/pinterest",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Easy to use Pinterest API wrapper for Node.js",
   "main": "lib/index.js",
   "files": [

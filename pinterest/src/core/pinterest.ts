@@ -26,7 +26,6 @@ export class Pinterest {
 
     const { data: pins } = await response.json();
 
-    console.log('#1', pins);
     return pins;
   }
 
