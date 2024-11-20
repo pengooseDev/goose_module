@@ -15,7 +15,7 @@ npm install @pengoose/pinterest
 ### Basic Usage
 
 ```ts
-import Pinterest from '@pengoose/pinterest';
+import { Pinterest } from '@pengoose/pinterest';
 
 const pinterest = new Pinterest({
   id: 'your_id',
