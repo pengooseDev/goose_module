@@ -76,9 +76,7 @@ export const Layout = ({
   };
 
   const sideStyle = (height: number): CSSProperties => ({
-    height: `calc(100vh - ${height}px - ${innerPadding || '0'} - ${
-      innerPadding || '0'
-    })`,
+    height: `calc(100vh - ${height}px`,
     overflowY: 'auto',
     flexShrink: 0,
   });
