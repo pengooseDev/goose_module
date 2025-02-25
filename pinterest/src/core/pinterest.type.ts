@@ -17,7 +17,7 @@ export interface Pin {
   is_video: boolean;
 }
 
-export type PinList = Record<string, Pin[]>;
+export type Boards = Record<string, Pin[]>;
 
 export interface Options {
   flat: {

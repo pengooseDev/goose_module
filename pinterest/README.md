@@ -1,8 +1,8 @@
 # @pengoose/pinterest
 
-![Image](https://github.com/user-attachments/assets/676e907f-faf9-43ff-8f72-913eb9aa6e1e)
+![Logo](https://github.com/user-attachments/assets/676e907f-faf9-43ff-8f72-913eb9aa6e1e)
 
-`@pengoose/pinterest` is a lightweight library that simplifies communication with the Pinterest API, allowing easy management of boards and pins.
+`@pengoose/pinterest` is a lightweight library for interacting with the Pinterest API, designed to easily fetch pins from multiple boards.
 
 ## Installation
 
@@ -12,141 +12,71 @@ npm install @pengoose/pinterest
 
 ## Usage
 
-### Basic Usage
+### Basic Setup
+
+Create an instance of the `Pinterest` class by providing your Pinterest user ID and an array of board IDs.
 
 ```ts
 import { Pinterest } from '@pengoose/pinterest';
 
 const pinterest = new Pinterest({
-  id: 'your_id',
-  boardIds: ['your_board_id', 'your_board_id_2'],
-});
-
-// Fetch pins from a specific board
-const boardPins = await pinterest.getMyBoard('my_board_id');
-
-// Fetch pins from all boards
-const boards = await pinterest.getMyBoards();
-
-// Fetch pins from all boards as a flat array
-const boardsWithFlatten = await pinterest.getMyBoards({ flat: true });
-
-// Fetch pins from a board with an explicit ID
-const specificBoardPins = await pinterest.getBoard({
-  id: 'specific_user_id',
-  boardId: 'specific_board_id',
-});
-
-// Fetch multiple boards with flattened pins
-const allPinsFlattened = await pinterest.getBoards({
-  id: 'specific_user_id',
-  boardIds: ['board_id_1', 'board_id_2'],
-  flat: true,
-});
-
-// Fetch multiple boards grouped by board ID
-const allBoardsWithPins = await pinterest.getBoards({
-  id: 'specific_user_id',
+  id: 'your_user_id',
   boardIds: ['board_id_1', 'board_id_2'],
 });
 ```
 
----
+### Fetch Boards Data
 
-## Class: `Pinterest`
+The `getBoards()` method retrieves pins from each board and returns an object where each key is a board ID and its value is an array of pins.
 
-The `Pinterest` class abstracts communication with the Pinterest API and provides the following methods:
+```ts
+const boards = await pinterest.getBoards();
+console.log(boards);
+// Example output:
+// {
+//   board_id_1: [/* Array of Pin objects */],
+//   board_id_2: [/* Array of Pin objects */]
+// }
+```
 
-### **Constructor**
+### Fetch All Pins
+
+The `getAllPins()` method aggregates pins from all boards into a single array. You can optionally shuffle the resulting array by setting the `shuffle` option to `true`.
+
+```ts
+// Retrieve all pins in order
+const allPins = await pinterest.getAllPins();
+
+// Retrieve all pins with a randomized order
+const shuffledPins = await pinterest.getAllPins({ shuffle: true });
+```
+
+## API Overview
+
+### Class: `Pinterest`
+
+#### Constructor
 
 ```ts
 new Pinterest({ id: string, boardIds: string[] });
 ```
 
-- **Parameters**
-  - `id`: Pinterest user ID.
-  - `boardIds`: List of board IDs to manage.
+- **id**: Your Pinterest user ID.
+- **boardIds**: An array of board IDs from which to fetch pins.
 
----
+#### Methods
 
-### **Methods**
+- **getBoards()**
+  - **Description**: Fetches pins for each board specified during instantiation.
+  - **Returns**: An object (`Boards`) where keys are board IDs and values are arrays of pins.
 
-#### **`getMyBoard(boardId: string): Promise<Pin[]>`**
+- **getAllPins({ shuffle?: boolean })**
+  - **Description**: Aggregates pins from all boards into a single array.
+  - **Parameters**:
+    - `shuffle` (optional): If set to `true`, the returned array will be randomized.
+  - **Returns**: An array of Pin objects.
 
-- Fetch pins from a specific board linked to the current user.
-- **Parameters**
-  - `boardId`: The ID of the board to fetch pins from.
-- **Returns**
-  - An array of pins (`Pin[]`) for the specified board.
+## Additional Information
 
-**Example**
-
-```
-const boardPins = await pinterest.getMyBoard('my_board_id');
-```
-
----
-
-#### **`getMyBoards(props?: { flat?: boolean }): Promise<Pin[] | PinList>`**
-
-- Fetch pins from all boards linked to the current user.
-- **Parameters**
-  - `props.flat`: If `true`, returns all board pins in a single flat array.
-- **Returns**
-  - `Pin[]` if `flat: true`.
-  - `PinList` (a map of board IDs to pin lists) if `flat: false`.
-
-**Example**
-
-```ts
-const boards = await pinterest.getMyBoards(); // Grouped by board
-const flattenedPins = await pinterest.getMyBoards({ flat: true }); // Flat array
-```
-
----
-
-#### **`getBoard({ id, boardId }: { id: string; boardId: string }): Promise<Pin[]>`**
-
-- Fetch pins from a specific board using an explicit user and board ID.
-- **Parameters**
-  - `id`: Pinterest user ID.
-  - `boardId`: The ID of the board to fetch pins from.
-- **Returns**
-  - An array of pins (`Pin[]`) for the specified board.
-
-**Example**
-
-```ts
-const boardPins = await pinterest.getBoard({
-  id: 'specific_user_id',
-  boardId: 'specific_board_id',
-});
-```
-
----
-
-#### **`getBoards(props: PinterestProps & { flat?: boolean }): Promise<Pin[] | PinList>`**
-
-- Fetch pins from multiple boards using explicit user and board IDs.
-- **Parameters**
-  - `props.id`: Pinterest user ID.
-  - `props.boardIds`: Array of board IDs to fetch.
-  - `props.flat`: If `true`, returns all board pins in a single flat array.
-- **Returns**
-  - `Pin[]` if `flat: true`.
-  - `PinList` (a map of board IDs to pin lists) if `flat: false`.
-
-**Example**
-
-```ts
-const allPinsFlattened = await pinterest.getBoards({
-  id: 'specific_user_id',
-  boardIds: ['board_id_1', 'board_id_2'],
-  flat: true,
-});
-
-const groupedPins = await pinterest.getBoards({
-  id: 'specific_user_id',
-  boardIds: ['board_id_1', 'board_id_2'],
-});
-```
+- The internal helper method `parseBoardId` cleans up board IDs by removing dots and replacing spaces with hyphens.
+- The API endpoint is dynamically constructed
