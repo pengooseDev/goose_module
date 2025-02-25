@@ -1,139 +1,123 @@
+<div align="center">
+
+# 📚 Docs
+| npm : | [KO](./npm_KO.md) \| [EN](./npm_EN.md) \| [JA](./npm_JA.md)|
+|:--:|:--:|
+| Creation guide: | [KO](./guide_KO.md) \| **EN** \| [JA](./guide_JA.md) |
+
+</div>
+
 # Module Development Guide
 
-Feeling overwhelmed as you start developing modules? 😨 Or are you seeking new perspectives to further your growth?
+Does the thought of starting module development feel overwhelming? 😨  
+Or do you want to grow by exploring new perspectives?  
+If so, check out the following documents during your development process! 🥳
 
-If so, refer to the documents below during your development process! 🥳
+# 1. Adopting an Idea
 
-# 1. Idea Adoption
+When you hear "module development," do you suddenly feel you must create something extraordinary or experience some kind of apprehension?
 
-Does the phrase "module development" make you feel like you need to create something amazing or provoke a certain kind of fear?
+In fact, we have already developed countless modules!  
+By using exports to make components, constants, types, interfaces, functions, and objects reusable, we've essentially been creating modules all along :)
 
-Actually, we've already developed countless modules!
-Making frequently used codes like components, constants, types, interfaces, functions, and objects reusable through exports is essentially creating modules :)
+We simply add a "deployment" step to make them easily usable in any project—so don’t be intimidated!
 
-All we're doing is adding a "deployment" process so that anyone can easily use them in any project, so don't be scared!
-
-`Here are some tips and examples of modules to inspire your ideas!`
+`Below are some tips for generating ideas and examples of modules!`
 
 ## Tip
-
-- Custom hooks or utility codes you often use, and the various examples explained below, can all become great modules.
-
-- Look around at the technologies or APIs you're currently using and consider how they could be further enhanced or what problems they could solve.
-
-- Think about the problems you frequently encounter during development! For example, the redux-thunk module maintains about 4 to 5 million downloads per week.
-
-## Module Examples
-
 ### **[@toss/utils](https://slash.page/ko/libraries/common/utils/src/Numbers_floorAndFormatNumber.i18n)**
-
 A variety of convenience libraries provided by Toss!
+### [@pengoose/pinterest](https://www.npmjs.com/package/@pengoose/pinterest)
+An image search module that utilizes the Pinterest API!
 
-### [useSound](https://slash.page/ko/libraries/common/utils/readme.i18n/)
+- Custom hooks, utility code, and the various examples described below can all become excellent modules.
+- Look at the technologies or APIs you already use, and think about how you can further enhance them and solve problems.
+- Consider the recurring issues you encounter during development! For instance, the redux-thunk module maintains 4 to 5 million downloads each week.
 
-A library that modularizes a custom hook for playing mp3 files!
+<br/>
+<br/>
 
-# 2. Writing Function Specifications
+# 2. Writing the Specification
 
-Once your idea is confirmed, it's time to concretize that idea. Writing function specifications to clearly define the project's goals and functions to be implemented is a step towards efficient and effective development. :)
+Once your idea is finalized, it's time to concretize it. Writing a specification that clearly defines your project's goals and the features to be implemented will help you develop efficiently and effectively. :)
 
-Below is an example of function specifications for a theme provision module! An example code is added to aid understanding, but if you're writing function specifications for the first time, there's no need to write code like this! :)
-
----
-
-### Button
-
-```tsx
-import { Button, ThemeProvider, themes } from '@goose/style';
-
-function App() {
-  const [currentTheme, setCurrentTheme] = useState(themes.light);
-
-  const toggleTheme = () => {
-    setCurrentTheme(currentTheme === themes.light ? themes.dark : themes.light);
-  };
-
-  return (
-    <ThemeProvider theme={currentTheme}>
-      <div>
-        <Button variant="primary">Primary Button</Button>
-        <Button variant="secondary">Secondary Button</Button>
-        <button onClick={toggleTheme}>Toggle Theme</button>
-      </div>
-    </ThemeProvider>
-  );
-}
+<br/>
+<br/>
+``` 
+- [ ] The Pinterest object should have `id` and `boardIds`.
+- [ ] `getBoards()` should return all boards.
+- [ ] `getAllPins()` should return an array containing the pin data from all boards.
+  - [ ] It should accept a `shuffle` option to randomize the order of images.
 ```
+<br/>
 
-- [ ] The Button component provides various styles through the variant props. It offers primary, secondary, outline, text, and more.
-- [ ] For readability and maintainability, implement the components using the Factory pattern.
-- [ ] Document the variants provided by the Button component.
-- [ ] Consider separating the theme object into the @goose/theme module and reflecting it in future updates.
+> The above is an example specification for the `@pengoose/pinterest` module! If you're writing a specification for the first time, it’s recommended to start simply and refine it as you implement features! :)
 
-### Theme
+<br/>
+<br/>
 
-- [ ] The theme object is provided with the following interface.
+# 3. Implementation
+```ts
+import { Pin, Boards } from './pinterest.type';
+import { shuffle as shufflePins } from './utils';
 
-```tsx
-interface Theme {
-  colors: {
-    primary: string;
-    secondary: string;
-  };
-  background: {
-    primary: string;
-    secondary: string;
-  };
-  fonts: {
-    body: string;
-    heading: string;
-  };
+interface PinterestProps {
+  id: string;
+  boardIds: string[];
 }
 
-type Themes = {
-  light: Theme;
-  dark: Theme;
-};
+export class Pinterest {
+  private id: string;
+  private boardIds: string[];
+
+  constructor({ id, boardIds }: PinterestProps) {
+    this.id = id;
+    this.boardIds = boardIds;
+  }
+
+  public async getBoards(): Promise<Boards> {
+    const requests = this.boardIds.map((boardId) => this.getBoard({ id: this.id, boardId }));
+    const result = await Promise.allSettled(requests);
+
+    return this.boardIds.reduce((acc, boardId, index) => {
+      const res = result[index];
+      if (res.status === 'fulfilled') {
+        acc[boardId] = res.value.pins;
+      }
+      return acc;
+    }, {} as Boards);
+  }
+
+  public async getAllPins({ shuffle }: { shuffle?: boolean } = {}): Promise<Pin[]> {
+    const boards = await this.getBoards();
+    const pins = Object.values(boards).flat();
+
+    if (shuffle) {
+      return shufflePins(pins);
+    }
+
+    return pins;
+  }
+  // ...codes
 ```
+<br/>
+<br/>
 
-- [ ] Consider additional themes to be added to Themes in the future.
+# 4. Minimizing Dependencies
 
-### ThemeProvider
+Minimizing dependency modules during module development is one of the important factors! The reasons are as follows:
 
-- [ ] Implement using the Provider Pattern for global access.
+1. **Increased Maintenance Difficulty**  
+   As the number of dependencies increases, it becomes harder to keep up with updates and manage versions of those libraries or packages. If version issues arise in sub-packages during updates, additional refactoring may be required!
 
-```tsx
-import { Button, ThemeProvider, theme } from '@goose/style';
+2. **Increased Potential for Security Issues**  
+   You may have experienced receiving warning emails from GitHub when a particular library encounters a security vulnerability. 😨 Since each dependency carries potential security risks, the more dependencies you have, the higher the likelihood of security issues!
 
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Button variant="primary">Primary Button</Button>
-      <Button variant="secondary">Secondary Button</Button>
-    </ThemeProvider>
-  );
-}
-```
+3. **Increased Bundle Size**  
+   More dependencies lead to a larger bundle size, which can slow down the initial loading of web applications or hinder build speeds!
 
-- [ ] The theme provided to the Provider can be dynamically changed through props.
+4. **Inefficient Tree Shaking**  
+   Modern build tools remove unused code from dependency modules. However, if a dependency isn’t optimized for tree shaking, unnecessary code may be included in the bundle, adversely affecting its size!
 
----
-
-# 3. Minimizing Dependency Modules
-
-During module development, minimizing dependency modules is one of the important elements! Here's why.
-
-1. Increased maintenance difficulty
-   The more dependencies, the more difficult it becomes to follow the updates and manage the versions of those libraries or packages. When issues with the version of a sub-package arise during an update, an additional process of code refactoring may be necessary!
-
-2. Increased possibility of security issues
-   You might have been surprised to receive a warning email from GitHub due to a security issue with a certain library. 😨 Each dependency module carries potential security vulnerabilities, so the more dependency modules, the higher the chance of security issues.
-
-3. Increased bundle size
-   The more dependency modules, the larger the bundle size, which can slow down the initial loading speed or build speed of a web application!
-
-4. Inefficient tree shaking
-   The latest build tools remove unused code from dependency modules. If a dependency module is not suitable for tree shaking, unnecessary code may be included in the bundle, adversely affecting the bundle size!
-
-5. Compatibility
-   Modules with minimal dependencies can be easily applied to various development environments and projects.
+5. **Compatibility**  
+   Modules with minimal dependencies can be easily applied across various development environments and projects.

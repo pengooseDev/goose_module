@@ -6,6 +6,8 @@
   📦 A guide to creating and publishing your first npm package.
 </h3>
 
+[**jotai**](https://github.com/pengooseDev/pengoose-jotai) | [**theme**](./theme/readme.md) | [**funnel**](./funnel/README.md) | [**goostate**](./goostate/README.md) | [**pinterest**](./pinterest/README.md)
+
 <img src="https://img.shields.io/badge/author-pengoose-blue?style=flat-square">
 <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square">
@@ -18,21 +20,14 @@
   </picture>
 <h4> * Illustration created by <a href="https://twitter.com/takuan1469414">沢庵</a> </h4>
 
-[**KO**](./docs/npm_KO.md) | [**EN**](./docs/npm_EN.md)
+| npm :           | **KO**                  \| [EN](./docs/npm_EN.md) \| [JA](./docs/npm_JA.md)      |
+| ------------------------------------------ | ----------------------------------------------------- |
+| Creation guide: |[KO](./docs/guide_KO.md) \| [EN](./docs/guide_EN.md)  \| [JA](./docs/guide_JA.md) |
+
+
 
 </div>
 
----
-
-<div align="center">
-
-# 📚 Modules
-
-[**jotai**](https://github.com/pengooseDev/pengoose-jotai) | [**theme**](./theme/readme.md) | [**funnel**](./funnel/README.md) | [**goostate**](./goostate/README.md)
-
-</div>
-
----
 
 # 1. 패키지 생성
 
@@ -156,10 +151,22 @@ npm 모듈을 배포하기 위해서는, [npm](https://www.npmjs.com/)에서 계
 
 ### npm 패키지 배포
 
-로그인이 완료되면, npm publish 명령어를 사용하여 패키지를 배포합니다.
+로그인이 완료되면, npm publish 명령어를 사용하여 패키지를 배포해요.
 
 ```shell
 > npm publish
+```
+
+단, package.json의 version 필드가 **이전에 배포된 version보다 높아야** 배포가 가능해요!
+```json
+{
+  "version": "1.0.0" // 이전에 배포된 version
+}
+```
+```json
+{
+  "version": "1.0.1" // 새로운 version (문서를 수정한 경우에도)
+}
 ```
 
 ---

@@ -1,3 +1,12 @@
+<div align="center">
+
+# 📚 Docs
+| npm : | [KO](./npm_KO.md) \| [EN](./npm_EN.md) \| [JA](./npm_JA.md)|
+|:--:|:--:|
+| Creation guide: | **KO** \| [EN](./guide_EN.md) \| [JA](./guide_JA.md) |
+
+</div>
+
 # 모듈 개발 가이드
 
 막상 모듈 개발을 시작하려니 막막하신가요? 😨
@@ -17,110 +26,86 @@ export를 이용해 컴포넌트나 constant, type, interface, 함수, 객체 �
 `아래는 아이디어를 얻을 수 있는 팁과 모듈의 예시에요!`
 
 ## Tip
+### **[@toss/utils](https://slash.page/ko/libraries/common/utils/src/Numbers_floorAndFormatNumber.i18n)**
+toss가 제공하는 다양한 편의성 라이브러리!
+### [@pengoose/pinterest](https://www.npmjs.com/package/@pengoose/pinterest)
+pinterest의 API를 활용한 이미지 검색 모듈!
 
 - 평소에 자주 쓰는 커스텀 훅이나, 유틸리티 코드, 그리고 아래에서 설명하는 다양한 예시들 모두가 멋진 모듈이 될 수 있어요.
-
 - 기존에 사용하고 있는 기술이나 API를 둘러보며, 이를 추가적으로 어떻게 고도화 하고 어떤 문제를 해결할 수 있을지 생각해보세요.
-
 - 개발하면서 자주 겪는 문제는 무엇인지 생각해보세요! redux-thunk 모듈의 경우 매주 400~500만 다운로드 수를 유지하고 있어요.
 
-## 멋진 모듈 예시
 
-### **[@toss/utils](https://slash.page/ko/libraries/common/utils/src/Numbers_floorAndFormatNumber.i18n)**
-
-toss가 제공하는 다양한 편의성 라이브러리!
-
-### [useSound](https://slash.page/ko/libraries/common/utils/readme.i18n/)
-
-mp3 파일을 재생하는 커스텀 훅을 모듈화 한 라이브러리!
+<br/>
+<br/>
 
 # 2. 기능명세서 작성
 
-아이디어가 확정되면, 그 아이디어를 구체화 할 차례에요. 기능명세서를 작성하여 프로젝트의 목표와 구현할 기능에 대해 명확하게 정의하는 과정은 효율적이고 효과적으로 개발을 진행할 수 있게 한답니다. :)
-
-아래는 theme 제공 모듈의 기능명세서 예시에요! 이해도를 돕기 위해 예시 코드를 추가했지만, 기능명세서를 처음 작성하는 경우라면 이렇게 코드까지 작성할 필요는 없어요! :)
-
----
-
-### Button
-
-```tsx
-import { Button, ThemeProvider, themes } from '@goose/style';
-
-function App() {
-  const [currentTheme, setCurrentTheme] = useState(themes.light);
-
-  const toggleTheme = () => {
-    setCurrentTheme(currentTheme === themes.light ? themes.dark : themes.light);
-  };
-
-  return (
-    <ThemeProvider theme={currentTheme}>
-      <div>
-        <Button variant="primary">Primary Button</Button>
-        <Button variant="secondary">Secondary Button</Button>
-        <button onClick={toggleTheme}>Toggle Theme</button>
-      </div>
-    </ThemeProvider>
-  );
-}
+ 아이디어가 확정되면, 그 아이디어를 구체화 할 차례에요. 기능명세서를 작성하여 프로젝트의 목표와 구현할 기능에 대해 명확하게 정의하는 과정은 효율적이고 효과적으로 개발을 진행할 수 있게 한답니다. :)
+<br/>
+<br/>
 ```
+- [ ] Pinterest 객체는 id와 boardIds를 갖는다.
+- [ ] getBoards() 는 모든 보드를 반환한다.
+- [ ] getAllPins()는 모든 보드가 가진 핀 데이터를 하나의 배열로 반환한다.
+  - [ ] shuffle 옵션을 받아 이미지 순서를 섞을 수 있다.
+```
+<br/>
 
-- [ ] Button 컴포넌트는 ` variant` props를 통해 다양한 스타일을 제공한다. primary, secondary, outline, text 등을 제공한다.
-- [ ] 가독성과 유지보수성 확보를 위해, Factory pattern으로 컴포넌트를 구현한다.
-- [ ] Button 컴포넌트에서 제공하는 variant를 문서화한다.
-- [ ] theme 객체를 @goose/theme 모듈로 분리하는 것을 고려하고 추후 업데이트에 반영한다.
+> 위는 `@pengoose/pinterest` 모듈의 기능명세서 예시에요! 기능명세서를 처음 작성하는 경우라면 너무 자세하게 작성하기보단, 기능을 구현해 나아가며 기능명세서를 계속해서 수정하는걸 권장해요! :)
 
-### Theme
+<br/>
+<br/>
 
-- [ ] theme 객체는 다음과 같은 interface로 제공된다.
+# 3. 구현
+```ts
+import { Pin, Boards } from './pinterest.type';
+import { shuffle as shufflePins } from './utils';
 
-```tsx
-interface Theme {
-  colors: {
-    primary: string;
-    secondary: string;
-  };
-  background: {
-    primary: string;
-    secondary: string;
-  };
-  fonts: {
-    body: string;
-    heading: string;
-  };
+interface PinterestProps {
+  id: string;
+  boardIds: string[];
 }
 
-type Themes = {
-  light: Theme;
-  dark: Theme;
-};
+export class Pinterest {
+  private id: string;
+  private boardIds: string[];
+
+  constructor({ id, boardIds }: PinterestProps) {
+    this.id = id;
+    this.boardIds = boardIds;
+  }
+
+  public async getBoards(): Promise<Boards> {
+    const requests = this.boardIds.map((boardId) => this.getBoard({ id: this.id, boardId }));
+    const result = await Promise.allSettled(requests);
+
+    return this.boardIds.reduce((acc, boardId, index) => {
+      const res = result[index];
+      if (res.status === 'fulfilled') {
+        acc[boardId] = res.value.pins;
+      }
+      return acc;
+    }, {} as Boards);
+  }
+
+  public async getAllPins({ shuffle }: { shuffle?: boolean } = {}): Promise<Pin[]> {
+    const boards = await this.getBoards();
+    const pins = Object.values(boards).flat();
+
+    if (shuffle) {
+      return shufflePins(pins);
+    }
+
+    return pins;
+  }
+  // ...codes
 ```
 
-- [ ] 추후 Themes에 추가될 theme들을 고민해보기.
+<br/>
+<br/>
 
-### ThemeProvider
-
-- [ ] 전역에서 접근할 수 있도록 Provider Pattern으로 구현한다.
-
-```tsx
-import { Button, ThemeProvider, theme } from '@goose/style';
-
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Button variant="primary">Primary Button</Button>
-      <Button variant="secondary">Secondary Button</Button>
-    </ThemeProvider>
-  );
-}
-```
-
-- [ ] Provider에 제공되는 theme은 props를 통해 동적으로 변경할 수 있다.
-
----
-
-# 3. 의존성 모듈 최소화
+# 4. 의존성 모듈 최소화
 
 모듈을 개발하는 과정에서 `의존성 모듈을 최소화` 하는 것은 중요한 요소 중 하나에요! 그 이유는 아래와 같아요.
 

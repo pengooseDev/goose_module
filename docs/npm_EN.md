@@ -1,26 +1,35 @@
-# 1. Package Creation
+<div align="center">
 
-First, create a new package using the npm init command.
+# 📚 Docs
+| npm : | [KO](./npm_KO.md) \| **EN** \| [JA](./npm_JA.md)|
+|:--:|:--:|
+| Creation guide: | [KO](./guide_KO.md) \| [EN](./guide_EN.md) \| [JA](./guide_JA.md) |
+
+</div>
+
+# 1. Create a Package
+
+First, create a new package using the `npm init` command.
 
 ```shell
 > npm init
 ```
 
-You don't need to complete all the settings now. After creating the package, you can modify the package.json file to add the necessary settings! :)
+You don't have to complete every setting right away. After the package is created, you can edit the package.json file directly to add any necessary settings! :)
 
-### Using Typescript
+## Using TypeScript
 
-To apply Typescript to the package, install Typescript and Node.js type definitions as development dependencies like below!
+To incorporate TypeScript into your package, install TypeScript and the Node.js type definitions as development dependencies like so:
 
-```
+```shell
 > npm install --save-dev typescript @types/node
 ```
 
-# 2. Setting package.json
+# 2. Configuring package.json
 
-The package.json file defines the package's information and dependencies. Refer to the example below!
+The package.json file defines your package’s metadata and dependencies. Refer to the example below!
 
-The option "build": "tsc" should be added to your package.json only if you're using TypeScript! :)
+The `"build": "tsc"` script is added only when you are using TypeScript! :)
 
 ```json
 {
@@ -44,27 +53,11 @@ The option "build": "tsc" should be added to your package.json only if you're us
 }
 ```
 
-## Adding @ to npm module names
-
-When you try to publish a module with "@" in its name, npm considers it a scoped package and treats it as a private package, resulting in an error. To indicate that it's a public package, you can use the following command:
-
-> npm publish --access=public
-
-## Specifying TypeScript Modules
-
-![Alt text](https://velog.velcdn.com/images/pengoose_dev/post/76a25c7d-a00e-4120-ba2f-8f1987897876/image.png)
-
-If you've used TypeScript modules, you may have come across the TS badge shown above! If you want to add a similar badge, you can do so by adding the "types" field to your package.json file as follows:
-
-```json
-"types": "index.d.ts",
-```
-
 ---
 
-### tsconfig Setup (When Using Typescript)
+## [tsconfig](https://yamoo9.gitbook.io/typescript/cli-env/tsconfig) Configuration (When Using TypeScript)
 
-In a Typescript project, you can set compiler options through the tsconfig.json file. :)
+In a TypeScript project, you can set the compiler options via the tsconfig.json file! :)
 
 ```json
 {
@@ -83,48 +76,50 @@ In a Typescript project, you can set compiler options through the tsconfig.json 
 
 # 3. Writing Code
 
-This is the phase of implementing your idea into code! :)
-Don't be too scared to create a "library" or a "module"!
+This is the stage to bring your ideas to life in code! :)
+Don't be intimidated by the idea of creating a "library" or "module"!
 
-Creating a module means making frequently used code reusable, and deploying it so that anyone can easily use it in any project.
+Creating a module means making frequently used code reusable and publishing it so that it can be easily used in any project.
 
-Custom hooks you often use, utility codes, and various examples like below can all become wonderful modules!
+Examples of modules include:
 
-Data validation library: A collection of functions that verify whether input meets specific conditions
-Frequently used algorithms: A module containing algorithms like sorting, searching, etc.
-API request wrapper: A function that wraps certain API requests for easy sending
-UI components: Reusable UI components like buttons, forms, dialogs, etc.
-It's simpler and cooler than you thought, isn't it? 🥳
+- **Data Validation Library:** A collection of functions to validate that inputs meet specific criteria.
+- **Common Algorithms:** Modules that include sorting, searching, or other algorithms.
+- **API Request Wrapper:** Functions that simplify sending requests to a specific API.
+- **UI Components:** Reusable UI components such as buttons, forms, and dialogs.
 
-# 4. Add readme
+It's simpler and cooler than you might think! 🥳
 
-Now it's time to document how to use your module! It's important to write clearly and kindly so others can easily understand and use your awesome code.
+# 4. Writing the README
 
-The readme file should include the following:
+Now it's time to document how to use your module! Writing a clear and friendly README helps others easily understand and use your amazing code.
 
-Module description: Briefly explain what problem this module solves or what functionality it provides. This allows users to easily understand the module's role!
-Installation and usage: Detailed explanation on how to install and use this module!
-Example code: Showing example code on how to actually use this module can be a huge help for users to understand. :)
-API documentation: Document the functions or methods provided by the module, as well as their arguments and return values in detail!
-Practicing good documentation helps decide how user-friendly your code is, and also greatly helps to improve your "collaboration skills" as a developer. Don't be too scared and give it a try! :)
+A good README should include:
+
+- **Module Description:** A brief explanation of what problem the module solves or what features it provides.
+- **Installation and Usage:** Detailed instructions on how to install and use the module.
+- **Example Code:** Sample code demonstrating how to use the module.
+- **API Documentation:** Detailed documentation of the module's functions or methods, including their parameters and return values.
+
+Good documentation not only makes your code user-friendly but also enhances your collaboration skills as a developer.
 
 # 5. Build
 
-If you're using Typescript or Babel, you need to go through the compilation process (build) and build your source code!
+If you are using TypeScript or Babel, you need to build your source code!
 
 ```shell
 > npm run build
 ```
 
-This command will create the built files in the lib folder in your project root, according to the tsconfig.json you wrote above.
+This command builds your project according to the tsconfig.json file and generates the built files in the lib folder at the project root.
 
 # 6. Deployment 🚀
 
-To distribute npm modules, you need to create an account at [npm](https://www.npmjs.com/)!
+To deploy your npm module, you need to create an account on [npm](https://www.npmjs.com/)!
 
-Once you've created your account, log in by typing the npm login command in the terminal :)
+Once you've created an account, log in via the terminal with:
 
-### npm login
+## npm Login
 
 ```shell
 > npm login
@@ -132,24 +127,87 @@ Once you've created your account, log in by typing the npm login command in the 
 
 ![npm login image](https://i.imgur.com/YiTdDAc.png)
 
-### npm package distribution
+## Deploying the npm Package
 
-Once you're logged in, you can distribute the package using the npm publish command.
+After logging in, deploy your package using the npm publish command.
 
 ```shell
 > npm publish
 ```
 
+*Note:* The version field in package.json must be higher than the previously published version for deployment to succeed!
+ 
+```json
+{
+  "version": "1.0.0" // Previously published version
+}
+```
+ 
+```json
+{
+  "version": "1.0.1" // New version (even for documentation updates)
+}
+```
+
 ---
 
-🎉 Congratulations! Your awesome package has been published on npm! 🥳
-Now other developers can install and use your package.
+🎉 Congratulations! Your amazing package is now published on npm! 🥳  
+Other developers can now install and use your package.
 
-Now you'll start receiving feedback about your amazing package and start improving it based on that feedback. :) (Isn't it exciting?)
+In the future, you'll receive feedback on your package and have opportunities to improve it further. :) (Exciting, isn’t it?)
 
-For example, you can listen to users' problems and receive feature requests in the issue tab on GitHub!
-Also, you can grow your code into something more awesome with the help of other developers through Pull Requests (PRs).
+For example, you might get user issues or feature requests via GitHub Issues, and even improve your code through Pull Requests (PRs) with the help of other developers.
 
-Congratulations on your first package deployment, and always rooting for you on your path to becoming a constantly learning and growing developer! :)
+Congratulations on your first package deployment, and best of luck on your continuous journey of learning and growth as a developer!
 
-It was an honor to be part of your first deployment process! 🥰
+---
+
+# Additional Tips
+
+# Deploying with Yarn
+
+Setting the `"private"` field in package.json to `false` allows the module to be installed via yarn!
+
+```json
+{
+  "private": false
+}
+```
+
+# Handling "@" in Module Names
+
+If your module name includes an "@", running `npm publish` may cause npm to treat it as a private package, resulting in a payment error.  
+To indicate that your repository is public, deploy it with the following command:
+
+```shell
+> npm publish --access=public
+```
+
+---
+
+# Specifying TS Module
+
+![](https://velog.velcdn.com/images/pengoose_dev/post/76a25c7d-a00e-4120-ba2f-8f1987897876/image.png)
+
+Setting the `"types"` field in package.json to `"index.d.ts"` signals that your module supports TypeScript! :)
+
+```json
+{
+  "types": "index.d.ts"
+}
+```
+
+---
+
+# Linking Your npm Repository
+
+![](https://i.imgur.com/UlhhJWQ.png)
+
+By configuring the `"repository"` field in package.json as shown below, you can link your repository.
+
+```json
+"repository": {
+  "type": "git",
+  "url": "repositoryURL"
+}
+```
