@@ -1,0 +1,27 @@
+{
+  "name": "@pengoose/mission-utils",
+  "version": "1.0.0",
+  "description": "mission-utils",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "types": "lib/index.d.ts",
+  "private": false,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "pengooseDev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "@types/node": "^20.4.2"
+  },
+  "keywords": []
+}
