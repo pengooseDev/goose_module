@@ -8,7 +8,7 @@ interface Props {
   };
 }
 
-class Random {
+export class Random {
   constructor() {}
 
   static pickNumberInRange(
@@ -128,5 +128,3 @@ class Random {
     return array.sort(() => Math.random() - 0.5);
   }
 }
-
-export default Random;

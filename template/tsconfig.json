@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "module": "commonjs",
+    "module": "ESNext",
+    "skipLibCheck": true,
     "outDir": "./lib",
     "rootDir": "./src",
     "baseUrl": ".",

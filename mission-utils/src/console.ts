@@ -6,7 +6,8 @@ interface Props {
     callback: (answer: string) => void;
   };
 }
-class Console {
+
+export class Console {
   constructor() {}
 
   static readLine(
@@ -63,5 +64,3 @@ class Console {
     console.log(message);
   }
 }
-
-export default Console;
